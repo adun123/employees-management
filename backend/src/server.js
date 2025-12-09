@@ -10,10 +10,11 @@ app.use(express.json());
 
 // FIX CORS
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: ["http://localhost:3000"],
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type"]
 }));
+
 // Test ENV
 console.log("DATABASE_URL:", process.env.DATABASE_URL);
 
