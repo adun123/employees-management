@@ -1,0 +1,44 @@
+version: '3.9'
+
+services:
+  backend:
+    build: ./backend
+    container_name: hr-backend
+    restart: always
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=production
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASS=root
+      - DB_NAME=employees_db
+    depends_on:
+      - postgres
+
+  frontend:
+    build: ./frontend
+    container_name: hr-frontend
+    restart: always
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+  postgres:
+    image: postgres:15
+    container_name: hr-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: employees_db
+    ports:
+      - "5173:4000"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  pgdata:
