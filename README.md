@@ -181,7 +181,7 @@ project-root/
 
 ## 📌 6. Screenshots (UI Preview)
 
-Tambahkan minimal 3–4 screenshot ke folder `/screenshots`:
+
 
 - Dashboard view  
 - Employee list  
